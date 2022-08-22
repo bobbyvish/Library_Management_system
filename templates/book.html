@@ -1,0 +1,141 @@
+{% extends "base.html"%}
+{% block content %}
+  
+
+    <div class="row">
+      <div class="col-4"><h2>Book</h2></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-3">
+            <button type="button" class="btn btn-primary btn-sm mr-1" data-bs-toggle="modal" data-bs-target="#addcustomBookModal">Add Book</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#importBookModal">Import Book</button>
+        </div>
+        <div class="col-5"></div>
+    <!-- Search form -->
+        <!-- <input class="form-control col" type="text" placeholder="Search" aria-label="Search"> -->
+        <form class="d-flex col-4 " role="search" method="GET" action="{{url}}"> 
+          <input class="form-control me-2" name="search" type="text" placeholder="Search title | author" aria-label="Search">
+            <button class="btn btn-outline-success" name="searchdata" type="submit">Search</button>
+        </form>
+
+    </div> 
+  
+    <hr>
+    <div id="table">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="col-0.5">Book Id</th>
+            <th scope="col" class="col-2">Title</th>
+            <th scope="col" class="col-2">Author</th>
+            <th scope="col" class="col-2">Publisher</th>
+            <th scope="col" class="col-1">Total Book</th>
+            <th scope="col" class="col-1">Book Stock</th>
+            <th scope="col" class="col-0.5">Rented</th>
+            <th scope="col" class="col-3">Operations</th>
+        </tr>
+        </thead>
+        {% for book in books%}
+        <tbody>
+        <tr>
+            <th scope="row">{{book.id}}</th>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.publisher}}</td>
+            <td>{{book.quantity}}</td>
+            <td>{{book.book_stock}}</td>
+            <td>{{book.rented}}</td>
+            <td>
+              <a href="{% url 'bookrentto' book.id %}">
+                <div class="btn btn-secondary btn-sm"
+                   
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                     Rent To
+                </div>
+              </a> 
+              <a href="{% url 'bookedit' book.id %}">
+                <div class="btn btn-primary btn-sm"
+                   
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                     Edit
+                </div>
+              </a> 
+              <a href="{% url 'bookdelete' book.id %}">
+                <div class="btn btn-danger btn-sm" 
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                      Delete
+                </div>  
+              </a> 
+            </td>
+        </tr> 
+        
+        </tbody>
+        {% endfor%}
+    </table>
+  </div>
+
+
+
+
+<!-- IMport Book Modal -->
+    <div class="modal fade" id="importBookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="importModalTitle">{{title}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                
+                <form action="{{ url }}" method="post">
+                  {% csrf_token %}
+                    {{ form.as_p }}  
+                                      
+                    <button type="submit" name="importbook" class="btn btn-primary">Submit</button>
+                  </form>
+
+                  <div><h6>To add 20 Random books click submit without any filter or type keyword related to filter books and add Quantity for individual book</h6>    </h6></div>
+
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+    <!-- Add Book Modal -->
+    
+    <div class="modal fade" id="addcustomBookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="addBookTitle">{{title}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                  <strong>{{ error|escape }}</strong>
+              </div>
+          {% endfor %}
+          <div class="modal-body">
+          
+              <form method="post" action="{{ url }}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                                  
+                  <button type="submit" name="addcustombook" class="btn btn-primary">Submit</button>
+              </form>
+
+
+
+
+          </div>
+         
+      </div>
+      </div>
+
+    </div>
+
+
+{% endblock content %}

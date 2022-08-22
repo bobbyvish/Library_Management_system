@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-3">
+            <h2>Transaction</h2>
+        </div>
+        <div class="col-5"></div>
+    <!-- Search form -->
+        <!-- <input class="form-control col" type="text" placeholder="Search" aria-label="Search"> -->
+        <form class="d-flex col-4 " role="search" method="GET" action="{{url}}"> 
+            <input class="form-control me-2" name="search" type="text" placeholder="Search Book & Member" aria-label="Search">
+              <button class="btn btn-outline-success" name="searchdata" type="submit">Search</button>
+        </form>
+
+    </div> 
+  
+    <hr>
+    <div id="table">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" class="col-1">T_Id</th>
+                <th scope="col" class="col-1">MemberName</th>
+                <th scope="col" class="col-2">BookNAme</th>
+                <th scope="col" class="col-1">Borrow date</th>
+                <th scope="col" class="col-1">Return date</th>
+                <th scope="col" class="col-1">Total Days</th>
+                <th scope="col" class="col-1">Total Charges</th>
+                <th scope="col" class="col-1">Amount Paid</th>
+                <th scope="col" class="col-1">Operations</th>
+            </tr>
+            </thead>
+            {% for transaction in transactions %}
+            <tbody>
+            <tr>
+                <th scope="row">{{transaction.id}}</th>
+                <td>{{transaction.member}}</td>
+                <td>{{transaction.book}}</td>
+                <td>{{transaction.borrow_date}}</td>
+                <td>{{transaction.return_date}}</td>
+                <td>{{transaction.total_days}}</td>
+                <td>{{transaction.total_charge}}</td>
+                <td>{{transaction.amount_paid}}</td>
+                <td>
+                    {% if transaction.return_date %}
+                        <strong>Closed</strong>
+                    {% else %}
+                    <a href="{{ url }}/{{transaction.id}}">
+                        <div class="btn btn-primary btn-sm" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Return</div>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr> 
+            
+            </tbody>
+            {% endfor%}
+        </table>
+    </div>
+
+
+
+
+<!-- IMport Book Modal -->
+    <div class="modal fade" id="addMember" tabindex="-1" aria-labelledby="addMember" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="addMembertitle">Add Member</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <form>
+                    
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="mb-3">
+                      <label for="EmailId" class="form-label">EmailId</label>
+                      <input type="email" class="form-control" id="EmailId">
+                    </div>
+                                               
+                    <div class="mb-3">
+                      <label for="advancepaid" class="form-label">Advance Paid:</label>
+                      <input type="number" class="form-control" id="advancepaid">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
