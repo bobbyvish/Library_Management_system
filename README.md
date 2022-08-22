@@ -50,3 +50,73 @@
 
 ![404 Image Not Found](https://github.com/bobbyvish/Library_Management_system/blob/master/images/Transactions.png)
 
+---
+
+## To Install:
+
+Cloning the Repository:
+
+```
+$ git clone https://github.com/bobbyvish/Library_Management_system.git
+
+$ cd django_ecommerce 
+
+```
+
+Installing the environment control:
+
+```
+$ pip install virtualenv
+
+$ virtualenv env
+
+```
+
+Activating the environment:
+
+on Windows:
+```
+env\Scripts\activate
+
+```
+on Mac OS / Linux:
+```
+$ source env/bin/activate
+
+```
+
+Installing dependencies:
+
+```
+$ pip install -r requirements.txt
+
+```
+
+Copy and rename the file of env.example as .env and then setting all requirements without using space after "=".
+
+```
+DJANGO_DEBUG=
+SECRET_KEY=
+DB_DATABASE=
+DB_HOST=
+DB_USERNAME=root
+DB_PASSWORD=
+DB_PORT=3306
+
+```
+
+Last commands to start:
+
+```
+$ python manage.py makemigrations
+
+$ python manage.py migrate
+
+```
+
+Finishing running server:
+
+```
+$ python manage.py runserver
+
+```
