@@ -1,7 +1,7 @@
 # Library Management System
 
 
-# Information
+# Overview
 
 ### Book Dashboard
 * The Book dashboard displays all the book record that are available in the database.Dashborad also display the **Total no. of book, Book stock and Rented book to member**.
