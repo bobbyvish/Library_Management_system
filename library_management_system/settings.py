@@ -27,7 +27,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG",True)
 
-ALLOWED_HOSTS = ['library--managementsystem.herokuapp.com/','localhost']
+ALLOWED_HOSTS = ['*']
 
 
 
