@@ -1,1 +1,1 @@
-web: gunicorn library_management_system.wsgi
+web: gunicorn library_management_system.wsgi:application --log-file - --log-level debug
