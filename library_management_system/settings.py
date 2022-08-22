@@ -27,10 +27,8 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG",True)
 
-ALLOWED_HOSTS = [
-    '127.0.0.1'
-    'library--managementsystem.herokuapp.com'
-]
+ALLOWED_HOSTS = ['*']
+
 
 
 # use for django-debug-toolbar
