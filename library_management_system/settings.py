@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env.str('DB_DATABASE'),
-        'HOST': env.str('DB_HOST'),
-        'USER': env.str('DB_USERNAME'),
-        'PASSWORD': env.str('DB_PASSWORD'),
-        'PORT': env.str('DB_PORT'),
+        'NAME': 'library_management',
+        'HOST': '127.0.0.1',
+        'USER': 'root',
+        'PASSWORD': '',
+        'PORT': '3306',
     }
 }
 
