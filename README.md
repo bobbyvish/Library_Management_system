@@ -59,7 +59,7 @@ Cloning the Repository:
 ```
 $ git clone https://github.com/bobbyvish/Library_Management_system.git
 
-$ cd django_ecommerce 
+$ cd Library_Management_system 
 
 ```
 
@@ -120,3 +120,4 @@ Finishing running server:
 $ python manage.py runserver
 
 ```
+###Thank you!!
