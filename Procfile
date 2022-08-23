@@ -1,3 +1,1 @@
-web: gunicorn library_management_system.wsgi:application --log-file - --log-level debug
-python manage.py makemigrations
-python manage.py makemigrate
+web: gunicorn library_management_system.wsgi:application --log-file - 
